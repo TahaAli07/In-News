@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                intent.putExtra("country_name", ccp.getSelectedCountryName());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                intent.putExtra("country_name", ccp.getSelectedCountryNameCode());
                 startActivity(intent);
+                finish();
             }
         });
     }

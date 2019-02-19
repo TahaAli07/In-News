@@ -4,6 +4,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public class NewsAPI {
 
@@ -12,7 +13,6 @@ public class NewsAPI {
     //https://newsapi.org/v2/everything?q=ArtificialIntelligence&from=2019-01-01&sortBy=publishedAt
 
     public static NewsService newsService = null;
-
 
     //for Singleton pattern
     public static NewsService getNewsService() {
@@ -31,7 +31,10 @@ public class NewsAPI {
     //Provide methods for interface
     public interface NewsService {
 
-        @GET("v2/everything?q=Android&from=2019-02-01&sortBy=publishedAt" + "&apiKey=" + KEY)
-        Call<PostList> getPostList();
+        @GET("v2/top-headlines?pageSize=100&sortBy=publishedAt" + "&apiKey=" + KEY)
+        Call<PostList> getPostList(@Query("country") String country);
+
+        @GET("v2/everything?sources=the-times-of-india&pageSize=100&apiKey=" + KEY)
+        Call<PostList> getExtraPosts();
     }
 }
